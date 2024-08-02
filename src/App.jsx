@@ -10,7 +10,7 @@ import ToDo from "./components/ToDo";
 import Weather from "./components/Weather";
 import ConfigMenu from "./components/ConfigMenu";
 import { stringify } from "querystring";
-// testing g
+
 export default function App() {
   /* Challenge
 
@@ -30,7 +30,7 @@ export default function App() {
   });
 
   const [widgetConfig, setWidgetConfig] = useState(() => {
-    return JSON.parse(window.localStorage.getItem("config")) || DEFAULT_CONFIG;
+    return DEFAULT_CONFIG;
   });
   const [saveRequested, setSaveRequested] = useState(false);
 
