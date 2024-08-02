@@ -30,7 +30,7 @@ export default function App() {
   });
 
   const [widgetConfig, setWidgetConfig] = useState(() => {
-    return DEFAULT_CONFIG;
+    return JSON.parse(window.localStorage.getItem("config")) || DEFAULT_CONFIG;
   });
   const [saveRequested, setSaveRequested] = useState(false);
 
