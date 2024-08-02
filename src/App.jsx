@@ -30,10 +30,12 @@ export default function App() {
   });
 
   const [widgetConfig, setWidgetConfig] = useState(() => {
-    return JSON.parse(window.localStorage.getItem("config")) || DEFAULT_CONFIG;
+    return DEFAULT_CONFIG;
   });
   const [saveRequested, setSaveRequested] = useState(false);
-
+  useEffect(() => {
+    setWidgetConfig(JSON.parse(window.localStorage.getItem("config")));
+  }, []);
   function save() {
     window.localStorage.setItem("config", JSON.stringify(widgetConfig));
     setSaveRequested(true); // Aşağıdaki 126. satırda yeşil "Kaydedildi" mesajının oluşturulmasına neden olur. State daha sonra 70. satırdaki setTimeout tarafından tekrar false değerine ayarlanır ve mesaj kaldırılır.
