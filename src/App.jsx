@@ -30,11 +30,20 @@ export default function App() {
   });
 
   const [widgetConfig, setWidgetConfig] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedConfig = window.localStorage.getItem("config");
+      return savedConfig ? JSON.parse(savedConfig) : DEFAULT_CONFIG;
+    }
     return DEFAULT_CONFIG;
   });
   const [saveRequested, setSaveRequested] = useState(false);
   useEffect(() => {
-    setWidgetConfig(JSON.parse(window.localStorage.getItem("config")));
+    if (typeof window !== "undefined") {
+      const savedConfig = window.localStorage.getItem("config");
+      if (savedConfig) {
+        setWidgetConfig(JSON.parse(savedConfig));
+      }
+    }
   }, []);
   function save() {
     window.localStorage.setItem("config", JSON.stringify(widgetConfig));
